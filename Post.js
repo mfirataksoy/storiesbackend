@@ -8,8 +8,8 @@ const postSchema = new Schema({
     description: String,
     date: Date,
     comments: [{body: String, by: Schema.Types.ObjectId}],
-    postedBy: [{type: Schema.Types.ObjectId, ref: "User"}],
-    familyId: {type: Schema.Types.ObjectId, ref: "Family"}  });
+    postedBy: {type: Schema.Types.ObjectId, ref: "User"},
+    familyId: [{ type : Schema.Types.ObjectId, ref: 'Family' }]});
 
 const Post = mongoose.model("Post", postSchema)
 module.exports = Post;
