@@ -7,6 +7,7 @@ const userSchema = new Schema({
     password: String,
     profilePicUrl: String,
     birthday: Date,
+    
     relatives: [Schema.Types.ObjectId]
   });
 
