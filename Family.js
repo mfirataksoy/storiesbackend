@@ -5,8 +5,7 @@ const mongoose = require("mongoose")
 const {Schema} = mongoose
 
 const familySchema = new Schema({
-    familyId: String,
-    description: String,
+    familyName: String,
     createdDate: Date,
     adminUser: {type: Schema.Types.ObjectId, ref: "User"},
     feed: [{type: Schema.Types.ObjectId, ref: "Post"}],
