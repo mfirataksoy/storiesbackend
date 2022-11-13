@@ -31,14 +31,14 @@ async function main() {
 app.get("/posts", async (req, res) => {
   const posts = await Post.find().populate("postedBy").populate("familyId")
   console.log(posts)
-  res.send("returned" + posts)
+  res.json(posts)
 })
 
 
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find().populate("familyId")
-    res.send("returned" + users)
+    res.json(users)
   } catch (error) {
     console.log(error)
   }
@@ -62,7 +62,7 @@ app.post("/register", async (req, res) => {
     }) 
     await user.save();
     console.log(user)
-    res.send("user added with " + user);
+    res.json(user);
   } catch (error) {
     console.log(error)
   }
@@ -71,7 +71,7 @@ app.post("/register", async (req, res) => {
 app.get("/user/:id", async (req, res) =>{
   try {
     const user = await User.findById(req.params.id).populate("familyId")
-    res.send(user)
+    res.json(user)
   } catch (error) {
     console.log(error);
   }
@@ -95,7 +95,7 @@ app.post("/post/:userid", async (req, res) => {
     }) 
     await post.save();
     console.log(post)
-    res.send("user added with " + post);
+    res.json(post);
   } catch (error) {
     console.log(error)
   }
@@ -117,7 +117,7 @@ app.post("/createfamily/:userid", async (req, res) => {
     user.familyId.push(family._id);
     await user.save();
 
-    res.send("family created with" + family)
+    res.json(family)
 
   } catch (error) {
     console.log(error)
