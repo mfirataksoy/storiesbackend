@@ -131,6 +131,14 @@ app.get("/posts/:familyId", (req, res) => {
 
 })
 
+app.get("/families", async (req, res) => {
+
+  const families = await Family.find().populate("adminUser").populate("members");
+
+  res.json(families);
+
+})
+
 
 // app.get("/invite/:familyId", async (req, res) => {
 //   req.body.email
