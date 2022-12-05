@@ -78,6 +78,24 @@ app.get("/user/:id", async (req, res) =>{
   
 })
 
+app.put("/user/:id", async (req, res) => {
+  try{
+
+    const filter = { _id: req.params.id };
+    const update = { firstName: req.body.firstName, lastName: req.body.lastName, password: req.body.password,  email: req.body.email};
+
+    // `doc` is the document _before_ `update` was applied
+    let user = await User.findOneAndUpdate(filter, update);
+
+    await user.save();
+
+    res.json(user)
+  }
+  catch{
+
+  }
+})
+
 app.post("/post/:userid", async (req, res) => {
 
   try {
